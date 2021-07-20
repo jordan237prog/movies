@@ -1,10 +1,23 @@
 import React from 'react'
 import './style.css'
 
-function Movie() {
-  return (
+function Movie({movieData}) {
+
+  const { 
+    id,
+    title,
+    category,
+    likes,
+    dislikes
+  } = movieData
+
+   return (
     <div className='movieItemContainer'>
-      <p> MOVIE COMPONENT</p>
+      <p>ID: {id}</p>
+      <p>title: {title} </p>
+      <p> category: {category} </p>
+      <p> likes: {likes} </p>
+      <p> dislikes: {dislikes} </p>
     </div>
   )
 }

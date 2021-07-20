@@ -1,3 +1,32 @@
+
+# Voici les étapes que j'ai suivies
+
+1. Choix des outils à utiliser
+
+2. Creation du design
+
+3. implementation( Create React App et Code )
+
+    - initialiser le projet avec create react app en local
+    - initialiser git et git flow en local
+    - créer un repo git sur GitHub pour tous les push et intégration continue
+    - faire le premier push sur la branche master
+    - créer un feature/nomdefonctionnalité pour chaque fonctionnalité ou tâche
+    - lorsque la fonctionnalité est prête, fusionnez-la avec la branche develop, testez, puis fusionnez-la avec la branche principale(master)
+
+
+
+# Installation du projet en local
+
+1. git clone https://github.com/jordan237prog/movies.git
+
+2. cd /dansleproject  
+
+3. yarn
+
+4. yarn start
+
+
 # react-interview
 
 1. Lister les films dans des cartes avec: le titre en gras, la catégorie et une jauge type Youtube indiquant le ratio likes/dislikes. Les cartes doivent être côtes à côtes et responsive. Càd que lorsque la fenêtre se réduit, les cartes sautent à la ligne suivante.
@@ -19,19 +48,3 @@ Prennez des initiatives, il y a des points bonus si
 * Il y a une attention aux détails
 
 /!\ La suppression du comportement asynchrone dans `movies.js` entraînera une annulation du test.
-
-
-# Voici les étapes que j'ai suivies
-
-1.  Choix des outils à utiliser
-
-2.  Creation du design
-
-3.  implementation( Create React App et Code )
-
-    - initialiser le projet avec create react app en local
-    - initialiser git et git flow en local
-    - créer un repo git sur GitHub pour tous les push et intégration continue
-    - faire le premier push sur la branche master
-    - créer un feature/nomdefonctionnalité pour chaque fonctionnalité ou tâche
-    - lorsque la fonctionnalité est prête, fusionnez-la avec la branche develop, testez, puis fusionnez-la avec la branche principale(master)
