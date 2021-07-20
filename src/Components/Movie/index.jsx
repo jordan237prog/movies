@@ -9,12 +9,12 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import ThumbDown from '@material-ui/icons/ThumbDown';
 import ThumbUp from '@material-ui/icons/ThumbUp';
-import Delete from '@material-ui/icons/Delete';
+import _ from 'lodash';
 
 import './style.css'
 
 
-function Movie({movieData, image}) {
+function Movie({movieData, image, movies, setMovies}) {
 
   // const classes = useStyles();
 
@@ -25,6 +25,14 @@ function Movie({movieData, image}) {
     likes,
     dislikes
   } = movieData
+
+     const deleteMovie = (id)=>{
+      const arr = _.remove(movies, (movie) => {
+        return movie.id !== id;
+      })
+
+      setMovies(arr)
+  } 
 
    return (
 
@@ -48,18 +56,18 @@ function Movie({movieData, image}) {
       </CardActionArea>
       <CardActions className='actionCard'>
         <div className="reactionCOntainer">
-          <div className="act">
+          <div onClick={() => { alert('Like') }} className="act">
             <ThumbUp/>
             <p className='actionText' >{likes}</p>
           </div>
-          <div className="act">
+          <div onClick={() => { alert('Dislike') }} className="act">
             <ThumbDown/>
             <p className='actionText' >{dislikes}</p>
             </div>
           
           
         </div>
-        <Button  variant="contained" size="small" color="secondary">
+        <Button onClick={() => {deleteMovie(id)}} variant="outlined" size="small" color="secondary">
           delete
         </Button>
       </CardActions>

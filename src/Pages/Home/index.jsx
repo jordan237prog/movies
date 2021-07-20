@@ -13,7 +13,7 @@ function Home() {
      movies$.then(
        (results) => setMovies(results)
      )
-  },[])
+  },[]); 
 
   if (movies === null) {
       return  <div></div>;
@@ -24,7 +24,7 @@ function Home() {
         { 
            movies.map((movie)=>{ 
              var image = "https://source.unsplash.com/user/c_v_r"
-            return <Movie key={movie.id} movieData={movie} image={image}/>;
+            return <Movie key={movie.id} movieData={movie} image={image} setMovies={setMovies} movies={movies} />;
           })
         }
       </div>
