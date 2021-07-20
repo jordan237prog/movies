@@ -1,0 +1,50 @@
+.footerContainer{
+  height: 75px;
+  background-color: #F2994A;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 3%;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin-bottom: 0px;
+}
+
+.rightContent{
+  display: flex;
+  justify-content: space-around;
+}
+
+.item{
+  margin-left: 20px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 20px;
+}
+
+.getBorder{
+  border-left: solid 1px black;
+}
+
+/*** 
+        MEDIA
+****/
+@media screen and (max-width: 480px) {
+  .item{
+    margin-left: 20px;
+    height: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 20px;
+    font-size: x-small;
+  }
+
+  .leftContent{
+    font-size: x-small
+  }
+}
