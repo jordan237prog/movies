@@ -4,8 +4,6 @@ import Movie from '../../Components/Movie'
 import {movies$} from '../../data/movies'
 import './style.css'
 
- 
-
 
 function Home() {
 
@@ -25,7 +23,8 @@ function Home() {
       <div className='movieContainer'>
         { 
            movies.map((movie)=>{ 
-            return <Movie key={movie.id} movieData={movie}/>;
+             var image = "https://source.unsplash.com/user/c_v_r"
+            return <Movie key={movie.id} movieData={movie} image={image}/>;
           })
         }
       </div>
