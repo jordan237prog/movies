@@ -1,5 +1,6 @@
 .container{
   margin-top: 50px;
+  margin-bottom: 50px;
   display: flex;
   justify-content: center;
   height: inherit;
@@ -15,3 +16,6 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
+
+

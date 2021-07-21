@@ -3,3 +3,71 @@
   align-items: center;
   justify-content: center; 
 } */
+
+.movieItemContainer{
+  border: 1px solid black;
+  margin: 10px ;
+  width: 150px;
+}
+
+.movieHeader{
+  height: 30px;
+  width: 100%;
+  background-color: black;
+  color: white;
+}
+
+.movieCard{
+  /* padding: 0 20px 0 20px; */
+  max-width: 345px;
+  margin: 20px;
+}
+
+.actionCard{
+  display: flex;
+  justify-content: space-between;
+}
+
+.reactionCOntainer{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-bottom: solid 2px #333;
+}
+
+.reactedCOntainer{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-bottom: solid 2px #F2994A;
+}
+
+.act{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.like{
+  color: #F2994A;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.dislike{
+  color: #F2994A;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.actionText{
+  padding-left: 20px;
+}

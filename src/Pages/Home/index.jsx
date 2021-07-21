@@ -1,19 +1,37 @@
 import React from 'react'
 
 import Movie from '../../Components/Movie'
-
+import {movies$} from '../../data/movies'
 import './style.css'
 
+
 function Home() {
-  return (
+
+  const [movies, setMovies] = React.useState(null)
+
+   React.useEffect(()=>{ 
+     movies$.then(
+       (results) => setMovies(results)
+     )
+  },[]); 
+
+  if (movies === null) {
+      return  <div></div>;
+    }
+    return  (
     <div className='container'>
       <div className='movieContainer'>
-        <Movie/>
-        <Movie/>
-        <Movie/>
+        { 
+           movies.map((movie)=>{ 
+             var image = "https://source.unsplash.com/user/c_v_r"
+            return <Movie key={movie.id} movieData={movie} image={image} setMovies={setMovies} movies={movies} />;
+          })
+        }
       </div>
     </div>
-  )
-}
+  ) 
+  }
+
+
 
 export default Home
