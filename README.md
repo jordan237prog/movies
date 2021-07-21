@@ -14,7 +14,7 @@
     - créer un feature/nomdefonctionnalité pour chaque fonctionnalité ou tâche 
     - lorsque la fonctionnalité est prête, fusionnez-la avec la branche develop, testez, puis fusionnez-la avec la branche principale(master)
 
-# j'utilise  GitHub Actions pour Testes le poject avec des Version differented de NodeJs (Important)
+# j'utilise  GitHub Actions pour Testes le poject avec des Version differentes de NodeJs (Important)
 
 # Installation du projet en local
 
