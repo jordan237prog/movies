@@ -3,6 +3,7 @@ import ReactPaginate from 'react-paginate';
 import _ from 'lodash';
 
 import Movie from '../../Components/Movie'
+import Filter from '../../Components/Filter'
 import {movies$} from '../../data/movies'
 import './style.css'
 
@@ -13,6 +14,8 @@ function Home() {
   const [moviesPerPage, setMoviesPerPage] = React.useState(4)
   const [currentPageNumber, setCurrentPageNumber] = React.useState(0)
   const [categories, setCategories] = React.useState(null);
+  const [isCategoryActive, setIsCategoryActive] = React.useState(null)
+  const [filteredMovies, setFilteredMovies] = React.useState(null)
 
    React.useEffect(()=>{ 
     // récupéreration de tous les films,
@@ -24,25 +27,51 @@ function Home() {
     //récupéreration de tous les catégories de films, puis les filtrer pour éviter la redondance de catégories
     const getCategories = ()=>{
      const allCotegories = []
+      
       movies!==null && ( 
-        _.forEach(movies, movie => {
+         _.uniqBy(movies,  (movie) => {
           allCotegories.push(movie.category)
         })
        )
-      return _.sortedUniq(allCotegories)
+       //redre les categorie unique
+      return allCotegories.filter((x, i) => allCotegories.indexOf(x) === i)
     }
 
     setCategories(getCategories());
 
   },[movies]);
 
+  React.useEffect(()=>{
+     const isActive = () => {
+      const obj = {}
+      categories !==null && _.forEach(categories, category => {
+        obj[category] = true 
+      })
+      return obj
+    }
 
-  console.log(categories)
+    setIsCategoryActive(isActive())
+  },[categories])
+
+    React.useEffect(()=>{
+
+      const filterMovies = () => {
+      const obj = []
+      movies !==null && _.forEach(movies, movie => {
+        if(isCategoryActive[movie.category] === true ){
+          obj.push(movie)
+        } 
+      })
+      console.log(obj)
+      return obj
+    }
+    setFilteredMovies(filterMovies())
+  },[isCategoryActive, movies])
 
   const pagesVisited = currentPageNumber * moviesPerPage
 
   // Creation de la Pagination
-  const diaplayMovies = movies!==null && movies.slice(pagesVisited, pagesVisited + moviesPerPage)
+  const diaplayMovies = movies!==null && filteredMovies.slice(pagesVisited, pagesVisited + moviesPerPage)
     .map(movie => {
       return (
         <Movie 
@@ -51,6 +80,7 @@ function Home() {
           image="https://source.unsplash.com/user/c_v_r"
           setMovies={setMovies}
           movies={movies}
+          show={isCategoryActive}
         />
       );
     });
@@ -69,6 +99,19 @@ function Home() {
     }
     return  (
     <div className='container'>
+
+    <div className='filterContainer'>
+      {categories!== null && categories.map( category =>{
+       return ( 
+       <Filter
+          isCategoryActive={isCategoryActive}
+          setIsCategoryActive={setIsCategoryActive}
+          category={category}
+          key={category}
+        />)
+      })}
+    </div>
+
       <div className='movieContainer'> 
         {diaplayMovies}
       </div>

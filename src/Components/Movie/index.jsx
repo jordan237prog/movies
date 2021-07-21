@@ -14,10 +14,11 @@ import _ from 'lodash';
 import './style.css'
 
 
-function Movie({movieData, image, movies, setMovies}) {
+function Movie({movieData, image, movies, setMovies, show}) {
 
   const [reacted, setReacted] = React.useState(null) 
-
+  const [display, setDisplay] = React.useState(null) 
+  
   const { 
     id,
     title,
@@ -25,6 +26,13 @@ function Movie({movieData, image, movies, setMovies}) {
     likes,
     dislikes
   } = movieData
+
+  React.useEffect(() => {
+    setDisplay(show[category])
+   
+  }, [show, category])
+
+  
 
   const deleteMovie = (id)=>{
     const arr = _.remove(movies, (movie) => {
@@ -86,7 +94,7 @@ function Movie({movieData, image, movies, setMovies}) {
 
 
   return (
-    <Card className='movieCard'>
+    <Card className={display === true ? 'movieCard': "dontshow"}>
       <CardActionArea>
         <CardMedia
           component="img"

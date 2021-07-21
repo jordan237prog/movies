@@ -21,6 +21,7 @@
   /* padding: 0 20px 0 20px; */
   max-width: 345px;
   margin: 20px;
+  
 }
 
 .actionCard{
@@ -71,3 +72,7 @@
 .actionText{
   padding-left: 20px;
 }
+
+.dontshow{
+   display: none;
+ }
