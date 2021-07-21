@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactPaginate from 'react-paginate';
+import _ from 'lodash';
 
 import Movie from '../../Components/Movie'
 import {movies$} from '../../data/movies'
@@ -11,16 +12,36 @@ function Home() {
   const [movies, setMovies] = React.useState(null)
   const [moviesPerPage, setMoviesPerPage] = React.useState(4)
   const [currentPageNumber, setCurrentPageNumber] = React.useState(0)
+  const [categories, setCategories] = React.useState(null);
 
    React.useEffect(()=>{ 
-     movies$.then(
-       (results) => {
-        setMovies(results)
-      })
-  },[]); 
+    // récupéreration de tous les films,
+    movies$.then(
+      (results) => {
+      setMovies(results)
+    })
+    
+    //récupéreration de tous les catégories de films, puis les filtrer pour éviter la redondance de catégories
+    const getCategories = ()=>{
+     const allCotegories = []
+      movies!==null && ( 
+        _.forEach(movies, movie => {
+          allCotegories.push(movie.category)
+        })
+       )
+      return _.sortedUniq(allCotegories)
+    }
+
+    setCategories(getCategories());
+
+  },[movies]);
+
+
+  console.log(categories)
 
   const pagesVisited = currentPageNumber * moviesPerPage
 
+  // Creation de la Pagination
   const diaplayMovies = movies!==null && movies.slice(pagesVisited, pagesVisited + moviesPerPage)
     .map(movie => {
       return (
@@ -34,8 +55,10 @@ function Home() {
       );
     });
 
+    //nombre de page a afficher
     const pageCount = movies!==null && Math.ceil(movies.length / moviesPerPage);
 
+    //changer de page
     const changePage = ({selected}) => {
       setCurrentPageNumber(selected)
     }
