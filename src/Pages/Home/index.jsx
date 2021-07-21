@@ -15,6 +15,7 @@ function Home() {
   const [currentPageNumber, setCurrentPageNumber] = React.useState(0)
   const [categories, setCategories] = React.useState(null);
   const [isCategoryActive, setIsCategoryActive] = React.useState(null)
+  const [filteredMovies, setFilteredMovies] = React.useState(null)
 
    React.useEffect(()=>{ 
     // récupéreration de tous les films,
@@ -40,8 +41,6 @@ function Home() {
 
   },[movies]);
 
-
-
   React.useEffect(()=>{
      const isActive = () => {
       const obj = {}
@@ -54,12 +53,25 @@ function Home() {
     setIsCategoryActive(isActive())
   },[categories])
 
+    React.useEffect(()=>{
 
+      const filterMovies = () => {
+      const obj = []
+      movies !==null && _.forEach(movies, movie => {
+        if(isCategoryActive[movie.category] === true ){
+          obj.push(movie)
+        } 
+      })
+      console.log(obj)
+      return obj
+    }
+    setFilteredMovies(filterMovies())
+  },[isCategoryActive, movies])
 
   const pagesVisited = currentPageNumber * moviesPerPage
 
   // Creation de la Pagination
-  const diaplayMovies = movies!==null && movies.slice(pagesVisited, pagesVisited + moviesPerPage)
+  const diaplayMovies = movies!==null && filteredMovies.slice(pagesVisited, pagesVisited + moviesPerPage)
     .map(movie => {
       return (
         <Movie 
@@ -68,6 +80,7 @@ function Home() {
           image="https://source.unsplash.com/user/c_v_r"
           setMovies={setMovies}
           movies={movies}
+          show={isCategoryActive}
         />
       );
     });
@@ -98,7 +111,7 @@ function Home() {
         />)
       })}
     </div>
-    
+
       <div className='movieContainer'> 
         {diaplayMovies}
       </div>

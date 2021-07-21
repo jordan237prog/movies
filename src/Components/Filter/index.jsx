@@ -6,10 +6,12 @@ function Filter({category, isCategoryActive, setIsCategoryActive}) {
   const [isActive, setIsActive] = React.useState(true)
 
    const activate = (isCategoryActive, category) =>{
-      // console.log(category, isCategoryActive[category])
+      
       isCategoryActive[category] = !( isCategoryActive[category])
-      // console.log(isCategoryActive[category])
+      
       setIsCategoryActive(isCategoryActive)
+
+
       setIsActive(isCategoryActive[category])
     }
 
