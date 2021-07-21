@@ -3,6 +3,7 @@ import ReactPaginate from 'react-paginate';
 import _ from 'lodash';
 
 import Movie from '../../Components/Movie'
+import Filter from '../../Components/Filter'
 import {movies$} from '../../data/movies'
 import './style.css'
 
@@ -13,6 +14,7 @@ function Home() {
   const [moviesPerPage, setMoviesPerPage] = React.useState(4)
   const [currentPageNumber, setCurrentPageNumber] = React.useState(0)
   const [categories, setCategories] = React.useState(null);
+  const [isCategoryActive, setIsCategoryActive] = React.useState(true)
 
    React.useEffect(()=>{ 
     // récupéreration de tous les films,
@@ -69,6 +71,11 @@ function Home() {
     }
     return  (
     <div className='container'>
+      <Filter
+        isCategoryActive={isCategoryActive}
+        setIsCategoryActive={setIsCategoryActive}
+        categories={categories}
+      />
       <div className='movieContainer'> 
         {diaplayMovies}
       </div>
