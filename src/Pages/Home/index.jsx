@@ -9,7 +9,6 @@ import './style.css'
 function Home() {
 
   const [movies, setMovies] = React.useState(null)
-  const [offset, setOffset] = React.useState(0)
   const [moviesPerPage, setMoviesPerPage] = React.useState(4)
   const [currentPageNumber, setCurrentPageNumber] = React.useState(0)
 
@@ -51,8 +50,8 @@ function Home() {
         {diaplayMovies}
       </div>
       <ReactPaginate
-          previousLabel={"prev"}
-          nextLabel={"next"}
+          previousLabel={"précédent"}
+          nextLabel={"suivantes"}
           breakLabel={"..."}
           pageCount={pageCount}
           breakClassName={"break-me"}
@@ -63,6 +62,12 @@ function Home() {
           subContainerClassName={"pages pagination"}
           activeClassName={"active"}
         />
+       <div className="numberOfItems" >
+          <p >Movies to display per page </p>
+          <strong className={moviesPerPage===4? 'activeNumber' : 'disabledNumber' } onClick={ () => {setMoviesPerPage(4)} } >4</strong> 
+          <strong className={moviesPerPage===8? 'activeNumber' : 'disabledNumber' } onClick={ () => {setMoviesPerPage(8)} } >8</strong>
+          <strong className={moviesPerPage===12? 'activeNumber' : 'disabledNumber' } onClick={ () => {setMoviesPerPage(12)} } >12</strong>
+       </div>
     </div>
   ) 
   }
