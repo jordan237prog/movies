@@ -1,3 +1,6 @@
+#   Project Movie Univers
+
+![image](https://user-images.githubusercontent.com/58524740/126494965-da744953-a8e2-4b3c-9220-8b083a96dd39.png)
 
 # Voici les étapes que j'ai suivies
 
@@ -15,6 +18,18 @@
     - lorsque la fonctionnalité est prête, fusionnez-la avec la branche develop, testez, puis fusionnez-la avec la branche principale(master)
 
 # j'utilise  GitHub Actions pour Testes le poject avec des Version differentes de NodeJs (Important)
+
+![github Action ](https://user-images.githubusercontent.com/58524740/126493485-3f27477d-9af5-4374-9c77-14eb10cc2241.png)
+
+#   Apres le test valider, nous pouvons merge la brache
+
+![Merge apres le test de github action](https://user-images.githubusercontent.com/58524740/126493534-5416b1ad-ee7e-4aba-a9ad-4c8aac277669.png)
+
+
+#   En cas d'echec je reçois un mail puis je vérifier le code
+
+![image](https://user-images.githubusercontent.com/58524740/126494226-4cc40f46-79bb-46ec-a030-a01226f3aa38.png)
+
 
 # Installation du projet en local
 
