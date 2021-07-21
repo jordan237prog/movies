@@ -11,10 +11,10 @@
     - initialiser git et git flow en local
     - créer un repo git sur GitHub pour tous les push et intégration continue
     - faire le premier push sur la branche master
-    - créer un feature/nomdefonctionnalité pour chaque fonctionnalité ou tâche
+    - créer un feature/nomdefonctionnalité pour chaque fonctionnalité ou tâche 
     - lorsque la fonctionnalité est prête, fusionnez-la avec la branche develop, testez, puis fusionnez-la avec la branche principale(master)
 
-
+# j'utilise  GitHub Actions pour Testes le poject avec des Version differented de NodeJs (Important)
 
 # Installation du projet en local
 
@@ -26,8 +26,7 @@
 
 4. yarn start
 
-
-# react-interview
+# react-interview(TAF)
 
 1. Lister les films dans des cartes avec: le titre en gras, la catégorie et une jauge type Youtube indiquant le ratio likes/dislikes. Les cartes doivent être côtes à côtes et responsive. Càd que lorsque la fenêtre se réduit, les cartes sautent à la ligne suivante.
 
