@@ -28,7 +28,7 @@ function Movie({movieData, image, movies, setMovies}) {
 
   const deleteMovie = (id)=>{
     const arr = _.remove(movies, (movie) => {
-      return movie.id !== id;
+      return movie.id === id;
     })
     setMovies(arr)
   } 
