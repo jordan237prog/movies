@@ -14,7 +14,7 @@ function Home() {
   const [moviesPerPage, setMoviesPerPage] = React.useState(4)
   const [currentPageNumber, setCurrentPageNumber] = React.useState(0)
   const [categories, setCategories] = React.useState(null);
-  const [isCategoryActive, setIsCategoryActive] = React.useState(true)
+  const [isCategoryActive, setIsCategoryActive] = React.useState(null)
 
    React.useEffect(()=>{ 
     // récupéreration de tous les films,
@@ -26,12 +26,14 @@ function Home() {
     //récupéreration de tous les catégories de films, puis les filtrer pour éviter la redondance de catégories
     const getCategories = ()=>{
      const allCotegories = []
+      
       movies!==null && ( 
-        _.forEach(movies, movie => {
+         _.uniqBy(movies,  (movie) => {
           allCotegories.push(movie.category)
         })
        )
-      return _.sortedUniq(allCotegories)
+       //redre les categorie unique
+      return allCotegories.filter((x, i) => allCotegories.indexOf(x) === i)
     }
 
     setCategories(getCategories());
@@ -39,7 +41,20 @@ function Home() {
   },[movies]);
 
 
-  console.log(categories)
+
+  React.useEffect(()=>{
+     const isActive = () => {
+      const obj = {}
+      categories !==null && _.forEach(categories, category => {
+        obj[category] = true 
+      })
+      return obj
+    }
+
+    setIsCategoryActive(isActive())
+  },[categories])
+
+
 
   const pagesVisited = currentPageNumber * moviesPerPage
 
@@ -71,11 +86,19 @@ function Home() {
     }
     return  (
     <div className='container'>
-      <Filter
-        isCategoryActive={isCategoryActive}
-        setIsCategoryActive={setIsCategoryActive}
-        categories={categories}
-      />
+
+    <div className='filterContainer'>
+      {categories!== null && categories.map( category =>{
+       return ( 
+       <Filter
+          isCategoryActive={isCategoryActive}
+          setIsCategoryActive={setIsCategoryActive}
+          category={category}
+          key={category}
+        />)
+      })}
+    </div>
+    
       <div className='movieContainer'> 
         {diaplayMovies}
       </div>

@@ -1,22 +1,25 @@
 import React from 'react'
 
 import './style.css'
-function Filter({categories, isCategoryActive, setIsCategoryActive}) {
+function Filter({category, isCategoryActive, setIsCategoryActive}) {
 
-  const filter = categories.map(category =>{
-    return(
-      <div
-        onClick={()=>{setIsCategoryActive(!isCategoryActive)}}  
-        className={isCategoryActive? "activeFilter" : "categoryItem"}
-      >
+  const [isActive, setIsActive] = React.useState(true)
+
+   const activate = (isCategoryActive, category) =>{
+      // console.log(category, isCategoryActive[category])
+      isCategoryActive[category] = !( isCategoryActive[category])
+      // console.log(isCategoryActive[category])
+      setIsCategoryActive(isCategoryActive)
+      setIsActive(isCategoryActive[category])
+    }
+
+  return (
+      <div key={category}
+        onClick={()=>{activate(isCategoryActive, category)}}  
+        className={isActive===true? "activeFilter" : "categoryItem"}
+      > 
         <p>{category}</p>
       </div>
-    )
-  })
-  return (
-    <div className='filterContainer'>
-      {filter}
-    </div>
   )
 }
 
