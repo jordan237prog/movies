@@ -50,6 +50,24 @@
   cursor: pointer;
 }
 
+.like{
+  color: #F2994A;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.dislike{
+  color: #F2994A;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+}
+
 .actionText{
   padding-left: 20px;
 }

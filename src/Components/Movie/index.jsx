@@ -16,7 +16,7 @@ import './style.css'
 
 function Movie({movieData, image, movies, setMovies}) {
 
-  // const classes = useStyles();
+  const [reacted, setReacted] = React.useState(null) 
 
   const { 
     id,
@@ -26,16 +26,66 @@ function Movie({movieData, image, movies, setMovies}) {
     dislikes
   } = movieData
 
-     const deleteMovie = (id)=>{
-      const arr = _.remove(movies, (movie) => {
-        return movie.id !== id;
-      })
-
-      setMovies(arr)
+  const deleteMovie = (id)=>{
+    const arr = _.remove(movies, (movie) => {
+      return movie.id !== id;
+    })
+    setMovies(arr)
   } 
 
-   return (
 
+  const likeMovie = (id) => {
+      const arr =  _.forEach(movies, movie => {
+        if(movie.id === id){
+          if(reacted === null){
+            setReacted(true)
+            movie.likes = movie.likes + 1 
+            return movies
+          }
+          if(reacted === false){
+            setReacted(true)
+            movie.dislikes = movie.dislikes - 1 
+            movie.likes = movie.likes + 1 
+            return movies
+          }
+          if(reacted === true){
+            setReacted(null)
+            movie.likes = movie.likes - 1 
+            return movies
+          }
+        }
+      })
+      setMovies(arr)
+      // console.log(movies)
+  }
+
+  const dislikeMovie = (id) => {
+      const arr =  _.forEach(movies, movie => {
+        if(movie.id === id){
+          if(reacted === null){
+            setReacted(false)
+            movie.dislikes = movie.dislikes + 1 
+            return movies
+          }
+          if(reacted === true){
+            setReacted(false)
+            movie.dislikes = movie.dislikes + 1 
+            movie.likes = movie.likes - 1 
+            return movies
+          }
+          if(reacted === false){
+            setReacted(null)
+            movie.dislikes = movie.dislikes - 1 
+            return movies
+          }
+        }
+      })
+      setMovies(arr)
+      // console.log(movies)
+  }
+
+
+  return (
     <Card className='movieCard'>
       <CardActionArea>
         <CardMedia
@@ -55,20 +105,19 @@ function Movie({movieData, image, movies, setMovies}) {
         </CardContent>
       </CardActionArea>
       <CardActions className='actionCard'>
-        <div className="reactionCOntainer">
-          <div onClick={() => { alert('Like') }} className="act">
+        <div className={reacted=== null ? "reactionCOntainer" : "reactedCOntainer"}>
+          <div onClick={() => {likeMovie(id)}} className= { reacted===true? "like": "act"}>
             <ThumbUp/>
             <p className='actionText' >{likes}</p>
           </div>
-          <div onClick={() => { alert('Dislike') }} className="act">
+          <div onClick={ () => {dislikeMovie(id)} } className= { reacted===false? "like": "act"}>
             <ThumbDown/>
             <p className='actionText' >{dislikes}</p>
             </div>
           
-          
         </div>
         <Button onClick={() => {deleteMovie(id)}} variant="outlined" size="small" color="secondary">
-          delete
+          supprimer
         </Button>
       </CardActions>
     </Card>
